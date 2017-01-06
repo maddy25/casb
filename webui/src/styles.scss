@@ -1,0 +1,68 @@
+/* You can add global styles to this file, and also import other style files */
+// If you need pre-defined themes
+//@import '~@angular/material/core/theming/prebuilt/indigo-pink.css';
+
+@import '~@angular/material/core/theming/all-theme';
+// Plus imports for other components in your app.
+
+// Include the base styles for Angular Material core. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+@include md-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue.
+//$candy-app-primary: md-palette($md-indigo);
+//$candy-app-accent:  md-palette($md-pink, A200, A100, A400);
+
+$md-sonicwall: (
+  50: #fbe9e7,
+  100: #ffccbc,
+  200: #ffab91,
+  300: #ff8a65,
+  400: #ff7043,
+  500: #ff5722,
+  600: #f4511e,
+  700: #e64a19,
+  800: #d84315,
+  900: #bf360c,
+  A100: #ff9e80,
+  A200: #ff6e40,
+  A400: #ff3d00,
+  A700: #dd2c00,
+  contrast: (
+    50: $black-87-opacity,
+    100: $black-87-opacity,
+    200: $black-87-opacity,
+    300: $black-87-opacity,
+    400: $black-87-opacity,
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white,
+    A100: $black-87-opacity,
+    A200: $black-87-opacity,
+    A400: white,
+    A700: white,
+  )
+);
+
+$sonicwall-primary: md-palette($md-blue);
+$sonicwall-accent:  md-palette($md-orange, A200, A100, A400);
+
+
+// The warn palette is optional (defaults to red).
+$sonicwall-warn:    md-palette($md-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$sonicwall-theme: md-light-theme($sonicwall-primary, $sonicwall-accent, $sonicwall-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($sonicwall-theme);
+
+@import './assets/scss/var/var';
+@import './assets/scss/src/base';
+@import './assets/scss/src/main';

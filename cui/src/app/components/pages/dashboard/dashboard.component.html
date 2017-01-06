@@ -1,0 +1,25 @@
+<div class="s-dashboard-pg">
+<div class="s-head" > <span>Products</span> </div>
+<div class="s-body" >
+    <div class="s-left"></div>
+    <div class="s-content">
+
+      <div style="display: block">
+        <canvas style="width:200px; height:200px" baseChart
+            [data]="incidentChartData"
+            [labels]="incidentChartLabels"
+            [colors]="incidentChartColors"
+            [chartType]="incidentChartType"
+            [options]="incidentChartOptions"
+            (chartHover)="incidentChartHovered($event)"
+            (chartClick)="incidentChartClicked($event)">
+        </canvas>
+      </div>
+
+    </div>
+
+</div>
+
+
+
+</div>

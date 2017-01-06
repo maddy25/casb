@@ -1,0 +1,46 @@
+@import '../../../assets/scss/var/var';
+.s-sidebar {
+  overflow: auto;
+  pointer-events: none;
+  position: fixed;
+  z-index: 99999999;
+  background:$s-c-soft-white;
+}
+.s-sidebar--left {
+  bottom: 0;
+  left: 0;
+  top: 0;
+}
+.s-sidebar--right {
+  bottom: 0;
+  right: 0;
+  top: 0;
+}
+.s-sidebar--top {
+  left: 0;
+  right: 0;
+  top: 0;
+}
+.s-sidebar--bottom {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+.s-sidebar--style {
+  background: #fff;
+  box-shadow: 0 0 2.5em rgba(85, 85, 85, 0.5);
+}
+.s-sidebar__overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  pointer-events: none;
+  z-index: 99999998;
+}
+.s-sidebar__overlay--style {
+  background: #000;
+  opacity: 0.75;
+}
+
