@@ -67,6 +67,9 @@ $sonicwall-theme: md-light-theme($sonicwall-primary, $sonicwall-accent, $sonicwa
 @import './assets/scss/src/base';
 @import './assets/scss/src/main';
 
+//Import classes from swimlane datatable
+
+
 /* RESET some Material Design Properties */
 .md-input-container {
   font-family:inherit !important;
@@ -94,3 +97,102 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, in
 
 md-toolbar{ font-family:inherit !important;}
 md-card{ font-family:inherit !important;}
+
+
+
+/*   Styles for Common Component Classes */
+.datatable {
+  font-family: Metropolis,Avenir Next,Helvetica Neue,Arial,sans-serif;
+  font-size:13px;
+  border:1px solid #ccc;
+  border-radius: 2px;
+  padding:0;
+  background-color: #fff;
+  .datatable-header, .datatable-footer {
+    font-size:11px;
+    line-height:18px;
+    font-weight:bold;
+    background-color:#fafafa;
+  }
+  .datatable-header{
+    //border-bottom: 2px solid #ccc;
+    box-shadow: 0 2px 4px 0px #ccc;
+    .datatable-header-cell{
+      line-height:22px;
+      padding-left:10px;
+      height:22px;
+    }
+  }
+  .datatable-header .datatable-header-cell:not(:first-child) {
+      border-left:1px solid #ccc;
+  }
+
+  .datatable-footer{
+    border-top: 1px solid #ccc;
+    .page-count{
+      margin: 10px;
+    }
+    .pages a{
+      padding:8px;
+      color:inherit;
+    }
+    .pages.active a{
+      padding:8px;
+      color:#007cbb;
+      background-color:#ddd;
+      text-align: center;
+    }
+  }
+
+  .datatable-header-inner{
+    padding:12px;
+  }
+  .datatable-body-cell{
+    padding:8px 0 10px 20px;
+    border-top: 1px solid #ddd;
+  }
+}
+
+ngx-charts-advanced-pie-chart .item-value{
+  margin-top: 0 !important;
+}
+
+
+// Custom Classes
+.s-table-badge{
+  font-size:11px;
+  font-weight:normal;
+  border-radius: 2px;
+  padding:2px 5px;
+
+  &.s-badge-critical{
+      background-color: $s-c-error;
+      color:$s-c-white;
+  }
+  &.s-badge-alert{
+      background-color: $s-c-warning;
+      color:$s-c-white;
+  }
+  &.s-badge-warning{
+      color:$s-c-warning;
+  }
+  &.s-badge-info{
+      color:$s-c-text;
+  }
+  &.s-badge-new{
+      color:$s-c-info;
+      border: 1px solid $s-c-info;
+      margin-left:5px;
+  }
+  &.s-badge-resolved{
+      color:$s-c-positive;
+  }
+  &.s-badge-dismissed{
+      color:$s-c-gray-logo;
+  }
+  &.s-badge-progress{
+      color:$s-c-text;
+  }
+
+
+}

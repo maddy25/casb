@@ -12,9 +12,7 @@ export class LoginComponent implements OnInit {
     model: any = {};
     errMsg:string = '';
 
-    constructor(
-        private router: Router,
-        private loginService: LoginService) { }
+    constructor( private router: Router, private loginService: LoginService) { }
 
     ngOnInit() {
         // reset login status

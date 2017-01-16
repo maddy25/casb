@@ -20,7 +20,9 @@
       "styles": [
         "styles.scss",
          "../node_modules/clarity-icons/clarity-icons.min.css",
-         "../node_modules/clarity-ui/clarity-ui.min.css"
+         "../node_modules/clarity-ui/clarity-ui.min.css",
+         "../node_modules/@swimlane/ngx-datatable/release/datatable.css",
+         "../node_modules/@swimlane/ngx-charts/release/ngx-charts.css"
       ],
       "scripts": [
         "../node_modules/chart.js/dist/Chart.min.js",

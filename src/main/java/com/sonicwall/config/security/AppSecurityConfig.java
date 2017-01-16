@@ -40,21 +40,21 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .exceptionHandling().and()
         .anonymous().and()
         // Disable Cross site references
-		.csrf().disable()
-        .authorizeRequests()
-		// Allow anonymous resource requests
-		.antMatchers("/", "/resources/**", "/static/**", "/public/**"
-        , "/configuration/**", "/swagger-ui/**",  "/swagger-ui-dark/**", "/swagger-ui-new/**", "/swagger-resources/**","/api-docs/**", "/v2/api-docs/**"
-        , "/webjars/springfox-swagger-ui/**"
-        , "/login" , "/session"
-        , "/home"
-        , "/console/*"
-        , "/webui/**"
-        , "/**/*.html" ,"/**/*.css","/**/*.js","/**/*.png","/**/*.ttf","/**/*.woff").permitAll()
-        // All other request need to be authenticated
-        .anyRequest().authenticated().and()
+		    .csrf().disable()
         // Allow CORS
         .addFilterBefore(new CorsFilter(), ChannelProcessingFilter.class)
+        .authorizeRequests()
+		    // Allow anonymous resource requests
+		    .antMatchers("/", "/resources/**", "/static/**", "/public/**"
+          , "/configuration/**", "/swagger-ui/**",  "/swagger-ui-dark/**", "/swagger-ui-new/**", "/swagger-resources/**","/api-docs/**", "/v2/api-docs/**"
+          , "/webjars/springfox-swagger-ui/**"
+          , "/login" , "/session"
+          , "/home"
+          , "/console/*"
+          , "/webui/**"
+          , "/**/*.html" ,"/**/*.css","/**/*.js","/**/*.png","/**/*.ttf","/**/*.woff").permitAll()
+        // All other request need to be authenticated
+        .anyRequest().authenticated().and()
 		    // Custom Token based authentication based on the header previously given to the client
          .addFilterBefore(new TokenFilter(tokenAuthService), UsernamePasswordAuthenticationFilter.class)
         // custom JSON based authentication by POST of {"username":"<name>","password":"<password>"} which sets the token header upon authentication

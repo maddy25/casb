@@ -1,17 +1,67 @@
 <div class="s-incidents-pg">
-<div class="s-head" > <span>Incidents</span> </div>
-<div class="s-body" >
-    <div class="s-left">
 
-    </div>
+  <ngx-charts-advanced-pie-chart
+      style="position:relative"
+      [view]="view"
+      [scheme]="colorScheme"
+      [results]="single"
+      (select)="onSelect($event)">
+  </ngx-charts-advanced-pie-chart>
+<!--
 
-    <div class="s-content">
-      <md-card>
-        policy List
-      </md-card>
-    </div>
+<clr-datagrid>
+    <clr-dg-column>User ID</clr-dg-column>
+    <clr-dg-column>Name</clr-dg-column>
+    <clr-dg-column>Creation date</clr-dg-column>
+    <clr-dg-column>Favorite color</clr-dg-column>
+
+
+    <clr-dg-footer>10 users</clr-dg-footer>
+</clr-datagrid>
+-->
+<ngx-datatable
+  style='height:450px; width:1200px;'
+  [rows]="rows"
+  [columns]="columns"
+  [headerHeight]="45"
+  [rowHeight]="36"
+  [footerHeight]="45"
+  [columnMode]="'standard'"
+  [scrollbarV]="true"
+  >
+   <!--
+      <ngx-datatable-column prop="incidentId" name="Incident"    [width]="70"  class="datagrid-column">   </ngx-datatable-column>
+      <ngx-datatable-column prop="detectedOn" name="Detected On" [width]="130" class="datagrid-column">   </ngx-datatable-column>
+      <ngx-datatable-column prop="policyId"   name="Policy ID"   [width]="100" class="datagrid-column">   </ngx-datatable-column>
+      <ngx-datatable-column prop="policyType" name="Policy"      [width]="210" class="datagrid-column">   </ngx-datatable-column>
+      <ngx-datatable-column prop="status"     name="Status"      [width]="110" class="datagrid-column">   </ngx-datatable-column>
+      <ngx-datatable-column prop="severity"   name="Severity"    [width]="110" class="datagrid-column">   </ngx-datatable-column>
+      <ngx-datatable-column prop="customerName"  name="Customer"       [width]="100" class="datagrid-column"></ngx-datatable-column>
+      <ngx-datatable-column prop="platformName"  name="Platform"       [width]="110" class="datagrid-column"></ngx-datatable-column>
+      <ngx-datatable-column prop="platformUser"  name="Offending User" [width]="120" class="datagrid-column"></ngx-datatable-column>
+      <ngx-datatable-column prop="ownerEmail"    name="Owner"          [width]="350" class="datagrid-column">
+            <template let-row="row" let-value="value" ngx-datatable-cell-template>
+                <span [innerHTML]="row['ownerName'] +' <span> ' + value + '</span>' "></span>
+            </template>
+      </ngx-datatable-column>
+     -->
+  </ngx-datatable>
+
+  <template #severityCellTpl let-row="row" let-value="value" let-i="index">
+      <span *ngIf="value == 'critical'" class="s-table-badge s-badge-critical">{{value}}</span>
+      <span *ngIf="value == 'alert'"    class="s-table-badge s-badge-alert">{{value}}</span>
+      <span *ngIf="value == 'warning'"  class="s-table-badge s-badge-warning">{{value}}</span>
+      <span *ngIf="value == 'info'"     class="s-table-badge s-badge-info">{{value}}</span>
+  </template>
+  <template #statusCellTpl let-row="row" let-value="value" let-i="index">
+      <span *ngIf="value == 'New'"       class="s-table-badge s-badge-new">{{value}}</span>
+      <span *ngIf="value == 'Progress'"  class="s-table-badge s-badge-progress">{{value}}</span>
+      <span *ngIf="value == 'Dismissed'" class="s-table-badge s-badge-dismissed">{{value}}</span>
+      <span *ngIf="value == 'Resolved'"  class="s-table-badge s-badge-resolved">{{value}}</span>
+  </template>
+
+
+
 </div>
 
 
-
-</div>

@@ -91,52 +91,7 @@ h6 {  font:$s-f6-size $s-f-family;font-weight:600  }
   flex-direction: row;
 }
 
-.s-m-16       { margin:16px       }
-.s-m-0-16-0-0 { margin:0 16px 0 0 }
-.s-m-0-0-0-16 { margin:0 0 0 16px }
-.s-m-0-16-0-16{ margin:0 16px     }
-.s-m-16-0-16-0{ margin:16px 0     }
-
-.s-p-16       { padding:16px       }
-.s-p-0-16-0-0 { padding:0 16px 0 0 }
-.s-p-0-0-0-16 { padding:0 0 0 16px }
-.s-p-0-16-0-16{ padding:0 16px     }
-.s-p-16-0-16-0{ padding:16px 0     }
-
-.s-m-8       { margin:8px       }
-.s-m-0-8-0-0 { margin:0 8px 0 0 }
-.s-m-0-0-0-8 { margin:0 0 0 8px }
-.s-m-0-8-0-8 { margin:0 8px     }
-.s-m-8-0-8-0 { margin:8px 0     }
-
-.s-p-8       { padding:8px       }
-.s-p-0-8-0-0 { padding:0 8px 0 0 }
-.s-p-0-0-0-8 { padding:0 0 0 8px }
-.s-p-0-8-0-8 { padding:0 8px     }
-.s-p-8-0-8-0 { padding:8px 0     }
-
-.s-child-items-left-m-16{
-  > button{margin-left:16px;}
-  > div   {margin-left:16px;}
-  > span  {margin-left:16px;}
-}
-.s-child-items-left-p-16{
-  > button{padding-left:16px;}
-  > div   {padding-left:16px;}
-  > span  {padding-left:16px;}
-}
-
-.s-child-items-left-m-8{
-  > button{margin-left:8px;}
-  > div   {margin-left:8px;}
-  > span  {margin-left:8px;}
-}
-.s-child-items-left-p-8{
-  > button{padding-left:8px;}
-  > div   {padding-left:8px;}
-  > span  {padding-left:8px;}
-}
-
 // Some defaults
 md-input{ font-size:16px;}
 fieldset{border:0}
+

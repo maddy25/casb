@@ -11,14 +11,14 @@ import com.sonicwall.model.security.User;
 import com.sonicwall.model.security.Role;
 import com.sonicwall.repo.UserRepository;
 
-// CASB Policy Model and Repo
-import com.sonicwall.model.casb.policy.*;
-import com.sonicwall.repo.casb.policy.*;
+// CAS Policy Model and Repo
+import com.sonicwall.model.cas.policy.*;
+import com.sonicwall.repo.cas.policy.*;
 
 //Import enums from Model Class
-import static com.sonicwall.model.casb.policy.ActionModel.*;
-import static com.sonicwall.model.casb.policy.PolicyModel.*;
-import static com.sonicwall.model.casb.policy.RuleModel.*;
+import static com.sonicwall.model.cas.policy.ActionModel.*;
+import static com.sonicwall.model.cas.policy.PolicyModel.*;
+import static com.sonicwall.model.cas.policy.RuleModel.*;
 
 import java.util.*;
 
@@ -48,7 +48,7 @@ public final class SeedData {
 		userInfoService.insertOrSaveUser(user);
 	}
 
-	//CASB Rules
+	//CAS Rules
   public void insertRules(){
 		System.out.println("[ *** Mrin *** ]: Adding Rules");
 		this.addRule( 1, "File Name"   , "Check file name only"       , RuleTypeEnum.FILE_NAME);
@@ -62,7 +62,7 @@ public final class SeedData {
 			this.ruleRepo.save(rule);
 	}
 
-	//CASB PolicyAction
+	//CAS PolicyAction
 	public void insertPolicyActions(){
 		System.out.println("[ *** Mrin *** ]: Adding Policy Actions");
 		this.addPolicyActions("Delete", "Delete and purge", ActionTypeEnum.DELETE );
@@ -77,7 +77,7 @@ public final class SeedData {
 			this.actionRepo.save(action);
 	}
 
-	//CASB Policy
+	//CAS Policy
   // - Each Policy is associated with a Rule (Proximity) (eg: it applies to file-name, file-content, file-size, file-source etc )
   // - Each Policy will have one or more Actions
 	public void insertPolicies(){

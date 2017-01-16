@@ -9,7 +9,7 @@ import com.sonicwall.model.security.*;
 import javax.servlet.http.HttpServletRequest;
 import com.google.common.base.Strings;
 import org.springframework.beans.factory.annotation.Autowired;
-import static com.sonicwall.model.BaseResponse.*;
+import static com.sonicwall.model.OperationResponse.*;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
 import org.json.JSONException;
@@ -24,57 +24,52 @@ public class UserInfo {
 
 	@ApiOperation(value = "Gets current user information", response = UserInfoResponse.class)
 	@RequestMapping(value = "/user", method = RequestMethod.GET, produces = {"application/json"})
-	public UserInfoResponse getUserInformation(@RequestParam(value = "name", required = false) String userNameParam, HttpServletRequest req) throws NotFoundException {
+	public UserInfoResponse getUserInformation(@RequestParam(value = "name", required = false) String userIdParam, HttpServletRequest req) throws NotFoundException {
 
-		String loggedInUserName = userInfoService.getLoggedInUserName();
+		String loggedInUserId = userInfoService.getLoggedInUserId();
 
 		User user;
 		boolean provideUserDetails = false;
 
-		if (Strings.isNullOrEmpty(userNameParam)) {
+		if (Strings.isNullOrEmpty(userIdParam)) {
 			provideUserDetails = true;
 			user = userInfoService.getLoggedInUser();
 		}
-		else if (loggedInUserName.equals(userNameParam)) {
+		else if (loggedInUserId.equals(userIdParam)) {
 			provideUserDetails = true;
 			user = userInfoService.getLoggedInUser();
 		}
 		else {
 			//Check if the current user is superuser then provide the details of requested user
 			provideUserDetails = true;
-			user = userInfoService.getUserInfoByUserName(userNameParam);
+			user = userInfoService.getUserInfoByUserId(userIdParam);
 		}
 
 		UserInfoResponse resp = new UserInfoResponse();
 		if (provideUserDetails) {
-			//resp.setSuccess(true);
-      resp.setMsgType(ResponseStatusEnum.SUCCESS);
+      resp.setOperationStatus(ResponseStatusEnum.SUCCESS);
 		}
 		else {
-			//resp.setSuccess(false);
-      resp.setMsgType(ResponseStatusEnum.ERROR);
-			resp.setMsgKey("NO_ACCESS");
+      resp.setOperationStatus(ResponseStatusEnum.NO_ACCESS);
+			resp.setOperationMessage("No Access");
 		}
 		resp.setData(user);
 		return resp;
 	}
 
 
-	@ApiOperation(value = "Add new user", response = BaseResponse.class)
+	@ApiOperation(value = "Add new user", response = OperationResponse.class)
 	@RequestMapping(value = "/user", method = RequestMethod.POST, produces = {"application/json"})
-	public BaseResponse addNewUser(@RequestBody User user, HttpServletRequest req) {
+	public OperationResponse addNewUser(@RequestBody User user, HttpServletRequest req) {
 		boolean userAddSuccess = userInfoService.addNewUser(user);
-		BaseResponse resp = new BaseResponse();
-		//resp.setSuccess(userAddSuccess);
+		OperationResponse resp = new OperationResponse();
 		if (userAddSuccess==true){
-      resp.setMsgType(ResponseStatusEnum.SUCCESS);
-			resp.setMsgKey("SUCCESS");
-			resp.setMsg("User Added");
+      resp.setOperationStatus(ResponseStatusEnum.SUCCESS);
+			resp.setOperationMessage("User Added");
 		}
 		else{
-      resp.setMsgType(ResponseStatusEnum.ERROR);
-			resp.setMsgKey("ERROR");
-			resp.setMsg("Unable to add user");
+      resp.setOperationStatus(ResponseStatusEnum.ERROR);
+			resp.setOperationMessage("Unable to add user");
 		}
 		return resp;
 	}
