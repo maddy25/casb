@@ -116,8 +116,8 @@ CREATE TABLE user (
     postal      NVARCHAR(20) ,
     role        NVARCHAR(20) ,
     other_roles NVARCHAR(80) ,
-    active      TINYINT  ,
-    blocked     TINYINT  ,
+    is_active   TINYINT  ,
+    is_blocked  TINYINT  ,
     secret_question     NVARCHAR(100),
     secret_answer       NVARCHAR(100),
     enable_beta_testing TINYINT,
@@ -228,8 +228,8 @@ CREATE TABLE rule_condition (
     value1            NVARCHAR(150),
     value2            NVARCHAR(150),
     rule_id           INT ,          /* fk rule(id) */
-    field_id          INT , /* fk */
-    operator_id       INT , /* fk */
+    field_id          INT ,          /* fk */
+    operator_id       INT ,          /* fk */
     CONSTRAINT  pk_rule_condition PRIMARY KEY(id)
 );
 
@@ -289,7 +289,7 @@ ALTER TABLE rule_action             ADD CONSTRAINT fk_rule_action_action_id     
 
 /* Views */
 CREATE OR REPLACE VIEW incident_detail AS
-SELECT
+SELECT DISTINCT
 i.id as incident_id,
 i.policy_id,
 i.detected_on,
@@ -313,6 +313,25 @@ where i.policy_id              = p.id
   and r.managed_service_id     = ms.id
   and ms.supported_service_id  = ss.id
   and ss.supported_platform_id = splat.id;
+
+CREATE OR REPLACE VIEW policy_detail AS
+SELECT r.id as rule_id,
+c.name    as customer_name,
+p.name    as policy_name,
+pt.name   as policy_type,
+r.name    as rule_name,
+rc.description as rule_condition,
+f.name    as field_name,
+o.name    as operator,
+rc.value1 as value1,
+rc.value2 as value2
+from rule r, policy p, policy_type pt, field f, operator o, rule_condition rc, customer c
+where r.policy_id    = p.id
+and p.policy_type_id = pt.id
+and p.customer_id    = c.id
+and r.id             = rc.rule_id
+and rc.field_id      = f.id
+and rc.operator_id   = o.id
 
 
 /* Actions for each Rule

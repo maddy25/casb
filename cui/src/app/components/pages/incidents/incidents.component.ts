@@ -29,12 +29,12 @@ export class IncidentsComponent implements OnInit {
 	ngOnInit() {
     this.getIncidentData();
     this.columns=[
-      {prop:"incidentId"  , name: "ID"         , width:50},
+      {prop:"incidentId"  , name: "ID"         , width:50 },
       {prop:"detectedOn"  , name: "Detected On", width:170},
-      {prop:"policyId"    , name: "Policy ID"  , width:90},
-      {prop:"policyType"  , name: "Policy"     , width:210},
-      {prop:"status"      , name: "Status"     , width:80, cellTemplate: this.statusCellTpl },
-      {prop:"severity"    , name: "Severity"   , width:70, cellTemplate: this.severityCellTpl },
+      {prop:"policyId"    , name: "Policy ID"  , width:80 },
+      {prop:"policyType"  , name: "Policy"     , width:205},
+      {prop:"status"      , name: "Status"     , width:90, cellTemplate: this.statusCellTpl },
+      {prop:"severity"    , name: "Severity"   , width:75, cellTemplate: this.severityCellTpl },
       {prop:"customerName", name: "Customer"   , width:110},
       {prop:"platformName", name: "Platform"   , width:110},
       {prop:"platformUser", name: "Offending User", width:120},

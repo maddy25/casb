@@ -174,10 +174,12 @@ ngx-charts-advanced-pie-chart .item-value{
       color:$s-c-white;
   }
   &.s-badge-warning{
-      color:$s-c-warning;
+      font-size:13px;
+      //color:$s-c-warning;
   }
   &.s-badge-info{
-      color:$s-c-text;
+      font-size:13px;
+      //color:$s-c-text;
   }
   &.s-badge-new{
       color:$s-c-info;
@@ -185,13 +187,16 @@ ngx-charts-advanced-pie-chart .item-value{
       margin-left:5px;
   }
   &.s-badge-resolved{
-      color:$s-c-positive;
+      font-size:13px;
+      //color:$s-c-positive;
   }
   &.s-badge-dismissed{
-      color:$s-c-gray-logo;
+      font-size:13px;
+      //color:$s-c-gray-logo;
   }
   &.s-badge-progress{
-      color:$s-c-text;
+      font-size:13px;
+      //color:$s-c-text;
   }
 
 

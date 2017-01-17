@@ -188,24 +188,23 @@ INSERT INTO `cas`.`policy` (`id`, `name`,`description`,`state`, `severity`,`poli
 (100000 ,  "PCI Compliance"                  , "PCI Compliance"                  , "active",  "info"    ,200000  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (100001 ,  "PHI Compliance"                  , "PHI Compliance"                  , "active",  "info"    ,200001  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (100002 ,  "Credit Card Number"              , "Credit Card Number"              , "active",  "critical",200002  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100003 ,  "Payment cards information"       , "Payment cards information"       , "active",  "critical",200002  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100003 ,  "Payment cards information"       , "Payment cards information"       , "active",  "warning" ,200002  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (100004 ,  "Personal identifier information" , "Personal identifier information" , "active",  "critical",200003  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100005 ,  "Virus"                           , "Virus"                           , "active",  "alert"   ,200006  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100005 ,  "Virus"                           , "Virus"                           , "active",  "warning" ,200006  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (100006 ,  "Blacklist IP"                    , "Blacklist IP"                    , "active",  "alert"   ,200007  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100007 ,  "Blocked Email"                   , "Blocked Email"                   , "active",  "alert"   ,200008  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100007 ,  "Blocked Email"                   , "Blocked Email"                   , "active",  "warning" ,200008  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (100008 ,  "Spam Email"                      , "Spam Email"                      , "active",  "alert"   ,200009  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100012 ,  "Restricted FIle Type"            , "Restricted File Type"            , "active",  "alert"   ,200010  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (100009 ,  "Company information"             , "Company information"             , "active",  "critical",200012  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (100010 ,  "PCI Compliance"                  , "PCI Compliance"                  , "active",  "info"    ,200000  , 20002 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100011 ,  "PCI Compliance"                  , "PCI Compliance"                  , "active",  "info"    ,200000  , 20001 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" );
+(100011 ,  "PCI Compliance"                  , "PCI Compliance"                  , "active",  "info"    ,200000  , 20001 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100012 ,  "Restricted File Type"            , "Restricted File Type"            , "active",  "alert"   ,200010  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" );
 
 
 /* Rules for each Policy */
 INSERT INTO `cas`.`rule` (`id`, `name`, `description`, `policy_id`,`managed_service_id`,`rule_enforcement_point_id`,`created`,`updated`,`created_by`,`updated_by`) VALUES
-(300000   ,  "Walmart PCI Rule 1"    , "Walmart PCI Rule 1"   ,   100000  , 40000 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(3000001  ,  "Walmart PCI Rule 2"    , "Walmart PCI Rule 2"   ,   100000  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(3000002  ,  "Walmart PCI Rule 3"    , "Walmart PCI Rule 3"   ,   100000  , 40001 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(3000003  ,  "Walmart PCI Rule 4"    , "Walmart PCI Rule 4"   ,   100000  , 40002 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(3000000  ,  "Walmart PCI Rule"      , "Walmart PCI Rule"     ,   100000  , 40000 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(3000002  ,  "Walmart PHI Rule"      , "Walmart PHI Rule"     ,   100001  , 40001 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(3000003  ,  "Walmart File Block"    , "Walmart File Block"   ,   100012  , 40002 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000004  ,  "Credit Card Rule"      , "Credit Card Rule"     ,   100002  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000005  ,  "Card Information Rule" , "Card Information Rule",   100003  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000006  ,  "SSN Information Rule"  , "SSN Information Rule" ,   100004  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
@@ -213,10 +212,14 @@ INSERT INTO `cas`.`rule` (`id`, `name`, `description`, `policy_id`,`managed_serv
 (3000008  ,  "Blocked IP"            , "Blocked IP"           ,   100006  , 40001 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000009  ,  "Blacklisted Email"     , "Blacklisted Email"    ,   100007  , 40000 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000010  ,  "Spam Email"            , "Spam Email"           ,   100008  , 40000 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(3000012  ,  "Target PCI Rule"       , "Target PCI Rule"      ,   100010  , 40003 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(3000013  ,  "Company Information"   , "Company Information"  ,   100009  , 40003 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(3000014  ,  "Safeway PCI Rule"      , "Safeway PCI Rule"     ,   100011  , 40007 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" );
+
+/*
+(3000001  ,  "Walmart PCI Rule 2"    , "Walmart PCI Rule 2"   ,   100000  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000011  ,  "Questionable File"     , "Questionable File"    ,   100008  , 40001 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(3000012  ,  "Target PCI Rule 1"     , "Target PCI Rule 1"    ,   100010  , 40003 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(3000013  ,  "Target PCI Rule 2"     , "Target PCI Rule 2"    ,   100010  , 40003 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(3000014  ,  "Safeway PCI Rule 1"    , "Safeway PCI Rule 1"   ,   100011  , 40007 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" );
+*/
 
 /* Conditions for each Rule */
 INSERT INTO `cas`.`rule_condition` (`id`, `description`, `field_id`,`operator_id`,`value1`,`value2`,`rule_id`) VALUES
@@ -225,4 +228,4 @@ INSERT INTO `cas`.`rule_condition` (`id`, `description`, `field_id`,`operator_id
 (4000003, "Check Email Body"   ,303 , 401 , "Cerdit Card"    , "", 3000006),
 (4000004, "File name"          ,310 , 400 , "virus.exe"      , "", 3000007),
 (4000005, "File type"          ,313 , 400 , "exe"            , "", 3000007),
-(4000006, "Blocked IP"         ,316 , 400 , "10.10.10.10"    , "", 3000008) ;
+(4000006, "Blocked IP"         ,316 , 400 , "10.10.10.10"    , "", 3000008);
