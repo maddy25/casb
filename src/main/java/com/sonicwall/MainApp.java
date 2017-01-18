@@ -24,7 +24,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 import com.sonicwall.model.security.User;
 import com.sonicwall.model.security.Role;
 import com.sonicwall.repo.UserRepository;
-import com.sonicwall.SeedData;
+//import com.sonicwall.SeedData;
 
 @SpringBootApplication
 //@EnableZuulProxy
@@ -57,8 +57,7 @@ public class MainApp implements CommandLineRunner {
 	@Bean
     public InitializingBean insertDefaultUsers() {
 		return new InitializingBean() {
-			@Autowired
-			private SeedData seedData;
+			// @Autowired private SeedData seedData;
 
 			public void afterPropertiesSet() throws Exception {
 				System.out.println("\n------------------------------------");

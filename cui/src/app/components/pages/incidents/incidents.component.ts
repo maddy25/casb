@@ -21,7 +21,7 @@ export class IncidentsComponent implements OnInit {
 
   //ngx-Chart Variables
   single: any[] = [];
-  view: any[] = [700, 250];
+  view: any[] = [700, 150];
   colorScheme = { domain: ['#CE1126', '#FFCC00','#AAAAAA','#005d84']};
 
   constructor( private router: Router, private incidentService: IncidentService) { }

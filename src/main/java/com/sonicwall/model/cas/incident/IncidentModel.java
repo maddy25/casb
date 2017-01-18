@@ -5,6 +5,8 @@ import lombok.*;
 import java.util.*;
 import javax.persistence.*;
 import io.swagger.annotations.ApiModelProperty;
+import com.sonicwall.model.cas.incident.IncidentDetailModel.*;
+
 
 @Data
 @Entity
@@ -25,6 +27,7 @@ public class IncidentModel  {
   @Column(name="status")
   @ApiModelProperty(allowableValues = "NEW, IN_PROGRESS, DISMISSED, RESOLVED")
   private String status = null;
+  //private IncidentStatusEnum status = null;
 
   @Column(name="owner_name")
   private String ownerName = null;

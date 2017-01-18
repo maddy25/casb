@@ -185,19 +185,19 @@ INSERT INTO `cas`.`policy_type` (`id`, `name`) VALUES
 
 /* Policy */
 INSERT INTO `cas`.`policy` (`id`, `name`,`description`,`state`, `severity`,`policy_type_id`, `customer_id`, `created`, `updated`,`created_by`,`updated_by`) VALUES
-(100000 ,  "PCI Compliance"                  , "PCI Compliance"                  , "active",  "info"    ,200000  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100001 ,  "PHI Compliance"                  , "PHI Compliance"                  , "active",  "info"    ,200001  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100002 ,  "Credit Card Number"              , "Credit Card Number"              , "active",  "critical",200002  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100003 ,  "Payment cards information"       , "Payment cards information"       , "active",  "warning" ,200002  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100004 ,  "Personal identifier information" , "Personal identifier information" , "active",  "critical",200003  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100005 ,  "Virus"                           , "Virus"                           , "active",  "warning" ,200006  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100006 ,  "Blacklist IP"                    , "Blacklist IP"                    , "active",  "alert"   ,200007  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100007 ,  "Blocked Email"                   , "Blocked Email"                   , "active",  "warning" ,200008  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100008 ,  "Spam Email"                      , "Spam Email"                      , "active",  "alert"   ,200009  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100009 ,  "Company information"             , "Company information"             , "active",  "critical",200012  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100010 ,  "PCI Compliance"                  , "PCI Compliance"                  , "active",  "info"    ,200000  , 20002 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100011 ,  "PCI Compliance"                  , "PCI Compliance"                  , "active",  "info"    ,200000  , 20001 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(100012 ,  "Restricted File Type"            , "Restricted File Type"            , "active",  "alert"   ,200010  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" );
+(100000 ,  "PCI Compliance"                  , "PCI Compliance"                  , "ACTIVE",  "INFO"    ,200000  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100001 ,  "PHI Compliance"                  , "PHI Compliance"                  , "ACTIVE",  "INFO"    ,200001  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100002 ,  "Credit Card Number"              , "Credit Card Number"              , "ACTIVE",  "CRITICAL",200002  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100003 ,  "Payment cards information"       , "Payment cards information"       , "ACTIVE",  "WARNING" ,200002  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100004 ,  "Personal identifier information" , "Personal identifier information" , "ACTIVE",  "CRITICAL",200003  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100005 ,  "Virus"                           , "Virus"                           , "ACTIVE",  "WARNING" ,200006  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100006 ,  "Blacklist IP"                    , "Blacklist IP"                    , "ACTIVE",  "ALERT"   ,200007  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100007 ,  "Blocked Email"                   , "Blocked Email"                   , "ACTIVE",  "WARNING" ,200008  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100008 ,  "Spam Email"                      , "Spam Email"                      , "ACTIVE",  "ALERT"   ,200009  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100009 ,  "Company information"             , "Company information"             , "ACTIVE",  "CRITICAL",200012  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100010 ,  "PCI Compliance"                  , "PCI Compliance"                  , "ACTIVE",  "INFO"    ,200000  , 20002 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100011 ,  "PCI Compliance"                  , "PCI Compliance"                  , "ACTIVE",  "INFO"    ,200000  , 20001 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(100012 ,  "Restricted File Type"            , "Restricted File Type"            , "ACTIVE",  "ALERT"   ,200010  , 20000 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" );
 
 
 /* Rules for each Policy */
@@ -207,7 +207,7 @@ INSERT INTO `cas`.`rule` (`id`, `name`, `description`, `policy_id`,`managed_serv
 (3000003  ,  "Walmart File Block"    , "Walmart File Block"   ,   100012  , 40002 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000004  ,  "Credit Card Rule"      , "Credit Card Rule"     ,   100002  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000005  ,  "Card Information Rule" , "Card Information Rule",   100003  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
-(3000006  ,  "SSN Information Rule"  , "SSN Information Rule" ,   100004  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
+(3000006  ,  "Personal Info Rule"    , "Personal Info Rule"   ,   100004  , 40000 , 702 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000007  ,  "Virus detector"        , "Virus detector"       ,   100005  , 40001 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000008  ,  "Blocked IP"            , "Blocked IP"           ,   100006  , 40001 , 703 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
 (3000009  ,  "Blacklisted Email"     , "Blacklisted Email"    ,   100007  , 40000 , 701 ,"2017-01-01", "2017-01-01", "sysuser", "sysuser" ),
@@ -223,9 +223,13 @@ INSERT INTO `cas`.`rule` (`id`, `name`, `description`, `policy_id`,`managed_serv
 
 /* Conditions for each Rule */
 INSERT INTO `cas`.`rule_condition` (`id`, `description`, `field_id`,`operator_id`,`value1`,`value2`,`rule_id`) VALUES
-(4000001, "Check From Address" ,301 , 400 , "email1@junk.com", "", 3000009),
-(4000002, "Check Email Body"   ,303 , 401 , "ssn"            , "", 3000006),
-(4000003, "Check Email Body"   ,303 , 401 , "Cerdit Card"    , "", 3000006),
-(4000004, "File name"          ,310 , 400 , "virus.exe"      , "", 3000007),
-(4000005, "File type"          ,313 , 400 , "exe"            , "", 3000007),
-(4000006, "Blocked IP"         ,316 , 400 , "10.10.10.10"    , "", 3000008);
+(4000001, "Mail from Junk.com"         ,301 , 400 , "email1@junk.com", "", 3000009),
+(4000002, "Email contains SSN"         ,303 , 401 , "ssn"            , "", 3000006),
+(4000003, "Email with Credit Card Info",303 , 401 , "Cerdit Card"    , "", 3000006),
+(4000004, "Virus.exe file detected"    ,310 , 400 , "virus.exe"      , "", 3000007),
+(4000005, "Detected .exe file"         ,313 , 400 , "exe"            , "", 3000007),
+(4000006, "Mail from ads.com"          ,301 , 400 , "email1@ads.com" , "", 3000009),
+(4000007, "Mail from free.com"         ,301 , 400 , "email1@free.com", "", 3000009),
+(4000008, "Mail from sale.com"         ,301 , 400 , "email1@sale.com", "", 3000009),
+(4000009, "Mail from deal.com"         ,301 , 400 , "email1@deal.com", "", 3000009),
+(4000010, "Detected Restricted IP"     ,316 , 400 , "10.10.10.10"    , "", 3000008);

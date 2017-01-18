@@ -1,0 +1,43 @@
+package com.sonicwall.repo.cas.incident;
+
+import org.springframework.data.domain.*;
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.sonicwall.model.cas.incident.IncidentModel;
+import java.util.Optional;
+import java.util.*;
+import com.sonicwall.model.cas.incident.*;
+
+class IncidentRepoCustomImpl implements IncidentRepoCustom {
+    //@PersistenceContext
+    //private EntityManager entityManager;
+
+
+    @Autowired
+    private IncidentRepo incidentRepo;
+
+    @Override
+    public ArrayList<IncidentModel> findAll() {
+        return super.findAll();
+    }
+
+  	public ArrayList<IncidentModel> getAllIncidents(){
+      ArrayList<IncidentModel> incidentList = (ArrayList<IncidentModel>)incidentRepo.findAll();
+			return incidentList;
+    }
+
+    /*
+    @Override
+    public List<Employee> readByEmployeeName(String name) {
+        return this.entityManager.
+            createQuery("select e from Employee e where e.employeeName like '"+name+"'").getResultList();
+    }
+    */
+
+
+
+}
+
+
+

@@ -182,7 +182,7 @@ CREATE TABLE rule_enforcement_point (
 
 /* Defines allowed actions for a rule_enforcement_point */
 CREATE TABLE rule_enforcement_point_action_association (
-    rule_enforcement_point_id INT       NOT NULL,  /* fk rule_enforcement_point(id)*/
+    rule_enforcement_point_id INT  NOT NULL,  /* fk rule_enforcement_point(id)*/
     action_id                 INT  NOT NULL,  /* fk action(id)*/
     CONSTRAINT rule_enforcement_point_action_association PRIMARY KEY(rule_enforcement_point_id, action_id)
 );
@@ -197,14 +197,14 @@ CREATE TABLE policy (
     id             INT           NOT NULL,
     name           NVARCHAR(50)  NOT NULL,
     description    NVARCHAR(150),
-    state          ENUM('active', 'inactive'),
-    severity       ENUM('alert', 'info', 'warning', 'critical'),
+    state          ENUM('ACTIVE', 'INACTIVE'),
+    severity       ENUM('ALERT', 'INFO', 'WARNING', 'CRITICAL'),
     created_by     NVARCHAR(20),
     updated_by     NVARCHAR(20),
     created        DATETIME,
     updated        DATETIME,
     policy_type_id INT ,     /* fk policy_type(id)*/
-    customer_id    INT ,          /* fk customer(id) */
+    customer_id    INT ,     /* fk customer(id) */
     CONSTRAINT  pk_policy PRIMARY KEY(id)
 );
 
@@ -302,6 +302,7 @@ pt.name    as policy_type,
 p.severity ,
 c.name     as customer_name,
 c.security_provider_id,
+c.id       as customer_id,
 sp.name    as security_provider_name,
 splat.name as platform_name
 from incident i, policy p, policy_type pt, customer c , security_provider sp , rule r, managed_service ms,supported_service ss, supported_platform splat
@@ -315,23 +316,32 @@ where i.policy_id              = p.id
   and ss.supported_platform_id = splat.id;
 
 CREATE OR REPLACE VIEW policy_detail AS
-SELECT r.id as rule_id,
-c.name    as customer_name,
-p.name    as policy_name,
-pt.name   as policy_type,
-r.name    as rule_name,
+SELECT
+p.id       as policy_id,
+p.name     as policy_name,
+pt.name    as policy_type,
+p.state    as policy_state,
+p.severity as severity,
+r.id       as rule_id,
+r.name     as rule_name,
+c.id       as customer_id,
+c.name     as customer_name,
+c.security_provider_id,
 rc.description as rule_condition,
-f.name    as field_name,
-o.name    as operator,
-rc.value1 as value1,
-rc.value2 as value2
-from rule r, policy p, policy_type pt, field f, operator o, rule_condition rc, customer c
-where r.policy_id    = p.id
-and p.policy_type_id = pt.id
-and p.customer_id    = c.id
-and r.id             = rc.rule_id
-and rc.field_id      = f.id
-and rc.operator_id   = o.id
+f.name     as field_name,
+o.name     as operator,
+rc.value1  as value1,
+rc.value2  as value2
+from rule r, policy p, policy_type pt, field f, operator o, rule_condition rc, customer c , security_provider sp
+where r.policy_id      = p.id
+  and p.policy_type_id = pt.id
+  and p.customer_id    = c.id
+  and c.security_provider_id   = sp.id
+  and r.id             = rc.rule_id
+  and rc.field_id      = f.id
+  and rc.operator_id   = o.id;
+
+
 
 
 /* Actions for each Rule

@@ -128,25 +128,25 @@ public class IncidentController {
         countType = (String)row.get("sevirity_status");
         count = (long)row.get("count");
         switch (countType) {
-          case "alert-NEW":           alert.setNewStatus(count) ; break;
-          case "alert-IN_PROGRESS":   alert.setInProgress(count); break;
-          case "alert-DISMISSED":     alert.setDismissed(count) ; break;
-          case "alert-RESOLVED":      alert.setResolved(count)  ; break;
+          case "ALERT-NEW":           alert.setNewStatus(count) ; break;
+          case "ALERT-IN_PROGRESS":   alert.setInProgress(count); break;
+          case "ALERT-DISMISSED":     alert.setDismissed(count) ; break;
+          case "ALERT-RESOLVED":      alert.setResolved(count)  ; break;
 
-          case "info-NEW":            info.setNewStatus(count) ; break;
-          case "info-IN_PROGRESS":    info.setInProgress(count); break;
-          case "info-DISMISSED":      info.setDismissed(count) ; break;
-          case "info-RESOLVED":       info.setResolved(count)  ; break;
+          case "INFO-NEW":            info.setNewStatus(count) ; break;
+          case "INFO-IN_PROGRESS":    info.setInProgress(count); break;
+          case "INFO-DISMISSED":      info.setDismissed(count) ; break;
+          case "INFO-RESOLVED":       info.setResolved(count)  ; break;
 
-          case "warning-NEW":         warning.setNewStatus(count) ; break;
-          case "warning-IN_PROGRESS": warning.setInProgress(count); break;
-          case "warning-DISMISSED":   warning.setDismissed(count) ; break;
-          case "warning-RESOLVED":    warning.setResolved(count)  ; break;
+          case "WARNING-NEW":         warning.setNewStatus(count) ; break;
+          case "WARNING-IN_PROGRESS": warning.setInProgress(count); break;
+          case "WARNING-DISMISSED":   warning.setDismissed(count) ; break;
+          case "WARNING-RESOLVED":    warning.setResolved(count)  ; break;
 
-          case "critical-NEW":        critical.setNewStatus(count) ; break;
-          case "critical-IN_PROGRESS":critical.setInProgress(count); break;
-          case "critical-DISMISSED":  critical.setDismissed(count) ; break;
-          case "critical-RESOLVED":   critical.setResolved(count)  ; break;
+          case "CRITICAL-NEW":        critical.setNewStatus(count) ; break;
+          case "CRITICAL-IN_PROGRESS":critical.setInProgress(count); break;
+          case "CRITICAL-DISMISSED":  critical.setDismissed(count) ; break;
+          case "CRITICAL-RESOLVED":   critical.setResolved(count)  ; break;
 
         }
     }

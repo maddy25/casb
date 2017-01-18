@@ -30,11 +30,8 @@ $include-rtl   : false;
 
 //Theme Colors
 $s-c-sonic-blue   : #005d84;
-$s-c-sonic-orange : #005d84;
 $s-c-primary      : #E3642B; // Orange Accent
 $s-c-standard     : #ffffff;
-$s-c-positive     : #6EA204;
-$s-c-negative     : #CE1126;
 $s-c-gray         : #AAAAAA;
 $s-c-gray-logo    : #63666A;
 $s-c-white        : #ffffff;
@@ -43,6 +40,14 @@ $s-c-soft-blue    : #2eadf5;
 $s-c-soft-red     : #e44959;
 $s-c-soft-green   : #9cc96b;
 $s-c-purple       : rgb(134,0,82);// #91489e;
+//Warning Colors
+$s-c-negative  : #CE1126; //critical
+$s-c-alert     : #E3642B;
+$s-c-warning   : #FFCC00;
+$s-c-positive  : #6EA204;
+$s-c-info      : #005d84;
+
+
 
 //Text Colors
 $s-c-text         : #333;  // Main Text color used in most places

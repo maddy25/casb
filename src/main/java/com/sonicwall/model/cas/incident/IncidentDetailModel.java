@@ -10,6 +10,9 @@ import javax.persistence.*;
 @Table(name = "incident_detail")
 public class IncidentDetailModel  {
 
+  public enum IncidentStatusEnum {CRITICAL, ALERT, WARNING, INFO};
+
+
   @Id
   private int    incidentId;
   private int    policyId;
@@ -21,7 +24,9 @@ public class IncidentDetailModel  {
   private String policyType;
   @ApiModelProperty(allowableValues = "NEW, IN_PROGRESS, DISMISSED, RESOLVED")
   private String status;
-  @ApiModelProperty(allowableValues = "alert, info, warning, critical")
+  //private IncidentStatusEnum status = null;
+
+  @ApiModelProperty(allowableValues = "ALERT, INFO, WARNING, CRITICAL")
   private String severity;
   private String customerName;
   private int    securityProviderId;
