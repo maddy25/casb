@@ -21,8 +21,7 @@ import io.swagger.annotations.*;
 import org.springframework.web.bind.annotation.RestController;
 import org.apache.commons.io.IOUtils;
 import org.json.JSONObject;
-import org.json.JSONException; 
-
+import org.json.JSONException;
 /*
 This filter maps to /session and tries to validate the username and password
 */
@@ -47,7 +46,7 @@ public class SessionFilter extends AbstractAuthenticationProcessingFilter {
             final UsernamePasswordAuthenticationToken loginToken = new UsernamePasswordAuthenticationToken(userJSON.getString("username"), userJSON.getString("password"));
             if(loginToken == null) {
                 throw new AuthenticationServiceException("Invalid Token");
-            }  
+            }
             //final UsernamePasswordAuthenticationToken loginToken = new UsernamePasswordAuthenticationToken("demo", "demo");
             return getAuthenticationManager().authenticate(loginToken);
         }
@@ -55,7 +54,7 @@ public class SessionFilter extends AbstractAuthenticationProcessingFilter {
             throw new AuthenticationServiceException(e.getMessage());
         }
     }
-    
+
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response,
                                             FilterChain chain, Authentication authentication) throws IOException, ServletException {

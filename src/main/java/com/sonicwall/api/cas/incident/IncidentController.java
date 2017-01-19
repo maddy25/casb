@@ -55,16 +55,16 @@ public class IncidentController {
         countType = (String)row.get("severity");
         count = (long)row.get("count");
         switch (countType) {
-          case "info":
+          case "INFO":
             incidentBySeverity.setInfo(count);
             break;
-          case "warning":
+          case "WARNING":
             incidentBySeverity.setWarning(count);
             break;
-          case "critical":
+          case "CRITICAL":
             incidentBySeverity.setCritical(count);
             break;
-          case "alert":
+          case "ALERT":
             incidentBySeverity.setAlert(count);
             break;
         }

@@ -31,9 +31,9 @@ public class User {
     @Getter @Setter private Role role;
 
     //@JsonIgnore
-    @Getter @Setter private boolean active;
+    @Getter @Setter private boolean isActive;
     //@JsonIgnore
-    @Getter @Setter private boolean blocked;
+    @Getter @Setter private boolean isBlocked;
     @Getter @Setter private String  secretQuestion;
     @Getter @Setter private String  secretAnswer;
     @Getter @Setter private boolean enableBetaTesting;

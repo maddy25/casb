@@ -1,4 +1,4 @@
-package com.sonicwall.model;
+package com.sonicwall.model.security;
 
 import io.swagger.annotations.*;
 import lombok.*;

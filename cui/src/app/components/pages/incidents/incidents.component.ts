@@ -31,13 +31,13 @@ export class IncidentsComponent implements OnInit {
     this.columns=[
       {prop:"incidentId"  , name: "ID"         , width:50 },
       {prop:"detectedOn"  , name: "Detected On", width:170},
-      {prop:"policyId"    , name: "Policy ID"  , width:80 },
+      {prop:"policyId"    , name: "Policy ID"  , width:75 },
       {prop:"policyType"  , name: "Policy"     , width:205},
       {prop:"status"      , name: "Status"     , width:90, cellTemplate: this.statusCellTpl },
       {prop:"severity"    , name: "Severity"   , width:75, cellTemplate: this.severityCellTpl },
-      {prop:"customerName", name: "Customer"   , width:110},
+      {prop:"customerName", name: "Customer"   , width:90},
       {prop:"platformName", name: "Platform"   , width:110},
-      {prop:"platformUser", name: "Offending User", width:120},
+      {prop:"platformUser", name: "Offending User", width:110},
       //{prop:"ownerEmail"  , name: "Owner Email", width:30},
       {prop:"ownerName"   , name: "Owner"      , width:200}
     ];
@@ -106,6 +106,7 @@ export class IncidentsComponent implements OnInit {
           this.rows = resp["items"].map(function(v, i, a){
             var newRow = Object.assign({}, v);
             newRow.detectedOn  = new Date(newRow.detectedOn).toLocaleDateString("en-US",dateFormat);
+
             switch (newRow.status) {
               case "IN_PROGRESS":
                 newRow.status = "Progress"
@@ -120,6 +121,22 @@ export class IncidentsComponent implements OnInit {
                 newRow.status = "Resolved"
                 break;
             }
+
+            switch (newRow.severity) {
+              case "CRITICAL":
+                newRow.severity = "critical"
+                break;
+              case "ALERT":
+                newRow.severity = "alert"
+                break;
+              case "WARNING":
+                newRow.severity = "warning"
+                break;
+              case "INFO":
+                newRow.severity = "info"
+                break;
+            }
+
             return newRow;
           });
           //console.log(successResponse["items"]);
