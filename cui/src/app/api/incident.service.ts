@@ -1,63 +1,80 @@
 import { Injectable, Inject } from '@angular/core';
 import { Http, Headers, Response, Request, RequestOptions, URLSearchParams,RequestMethod } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Observable, ReplaySubject, Subject } from 'rxjs';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
+import { TranslateService } from './translate.service';
 
 
 @Injectable()
 export class IncidentService {
     public token: string;
 
-    constructor(private http: Http,  @Inject('api') private api) {  //refer fo api value in app.module.ts
+    constructor(private http: Http, @Inject('api') private api, private translate:TranslateService) {  //refer fo api value in app.module.ts
         // set token if saved in local storage
         var currentUser = JSON.parse(localStorage.getItem('currentUser'));
         this.token = currentUser && currentUser.token;
     }
 
-    getIncidents(page:number, size:number): Observable<Response> {
-
-      //Create Request Headers
-      let headers = new Headers();
-      //  headers.append('custom-header', 'custom-value'); // Custom Headers will be blocked by cross-origin policies
-
+    getIncidents(page:number, size:number): Observable<any> {
       //Create Request URL params
+      let me = this;
       let params: URLSearchParams = new URLSearchParams();
       params.set('page', page.toString());
       params.set('size', size.toString());
 
       let options = new RequestOptions({
-          headers: headers,
           method : RequestMethod.Get,
           url    : this.api + 'cas/incidents',
-          search:params
+          search : params
       });
+      let incidentList = new Subject<any>(); // Will use this subject to emit data that we want
 
-      return this.http.request(new Request(options))
-        .map(res => res.json())
+      this.http.request(new Request(options))
+        .map(resp => resp.json())
         .catch((err:Response) => {
             console.log("Error === >" + err.status  );
             return Observable.throw(err) ;
+        })
+        .subscribe(jsonResp => {
+            let returnObj = jsonResp.items.map(function(v, i, a){
+                let newRow = Object.assign({}, v, {
+                  status    : me.translate.getIncidentStatus(v.status),
+                  severity  : me.translate.getSeverity(v.severity),
+                  detectedOn: me.translate.getDateString(v.detectedOn)
+                });
+                return newRow;
+            });
+            incidentList.next(returnObj); // incidentList is a Subject and emits an event thats being listened to by the components
         });
+        return incidentList;
     }
 
 
-
-    getIncidentsBySeverity(): Observable<Response> {
-
+    getIncidentsBySeverity(): Observable<any> {
+      let incidentBySeverity = new Subject<any>(); // Will use this subject to emit data that we want
       let options = new RequestOptions({
           method : RequestMethod.Get,
           url    : this.api + 'cas/incidents-by-severity'
       });
 
-      return this.http.request(new Request(options))
+      this.http.request(new Request(options))
         .map(res => res.json())
         .catch((err:Response) => {
             console.log("Error === >" + err.status  );
             return Observable.throw(err) ;
+        })
+        .subscribe(function(resp){
+            let returnObj = [
+              {"name":"critical", "value":resp.content.critical},
+              {"name":"alert"   , "value":resp.content.alert   },
+              {"name":"warning" , "value":resp.content.warning },
+              {"name":"info"    , "value":resp.content.info    }
+            ];
+            incidentBySeverity.next(returnObj);
         });
+        return incidentBySeverity;
     }
-
 
 
 }

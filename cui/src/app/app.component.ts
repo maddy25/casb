@@ -9,9 +9,7 @@ import { LoginComponent } from './components/pages/login/login.component';
 })
 
 export class AppComponent {
-
   private isLoggedOut:boolean = true;
-
   ngOnInit() {
        if (localStorage.getItem('currentUser')) {
             // This indicates the username and token exist in the local

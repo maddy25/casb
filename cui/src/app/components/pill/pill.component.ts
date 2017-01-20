@@ -27,8 +27,9 @@ import { Component, Input, OnChanges, SimpleChange, OnInit } from '@angular/core
 
         <div class="s-pill-text"
             style="padding:0 10px; text-align:center; vertical-align:middle; "
-            [ngStyle]="{'color':color, 'display':hideText?'none':'inline-block', 'font-size':fontSize, 'line-height':pillSize+'px'
-        }"> {{text}} </div>
+            [ngStyle]="{'color':color, 'display':hideText?'none':'inline-block', 'font-size':fontSize, 'line-height':pillSize+'px'}">
+            {{text}}
+        </div>
    </div>
    `
 })
@@ -51,9 +52,7 @@ export class PillComponent implements  OnChanges {
     borderRadius:number;
     iconRadius:number;
     changeLog:string[]=[];
-    constructor() {
-
-    }
+    constructor() {}
 
     ngOnChanges(changes: {[propertyName: string]: SimpleChange}) {
         var me = this;

@@ -44,6 +44,7 @@ public class PolicyDetailModel  {
     this.policyName   = policyName;
     this.policyType   = policyType;
     this.policyState  = policyState;
+    this.severity     = severity;
     this.ruleId       = ruleId;
     this.ruleName     = ruleName;
     this.conditions   = new ArrayList<Condition>();

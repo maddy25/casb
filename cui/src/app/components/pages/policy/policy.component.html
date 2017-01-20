@@ -1,17 +1,29 @@
 <div class="s-policy-pg">
-<div class="s-head" > <span>policy</span> </div>
-<div class="s-body" >
-    <div class="s-left">
-
-    </div>
-
-    <div class="s-content">
-      <md-card>
-        My Policy List
-      </md-card>
-    </div>
-</div>
 
 
+  <ngx-datatable
+  style='height:450px; width:1000px;'
+  [rows]="rows"
+  [columns]="columns"
+  [headerHeight]="45"
+  [rowHeight]="'auto'"
+  [columnMode]="'standard'"
+  [scrollbarV]="false"
+  >
+  </ngx-datatable>
 
+
+  <template #severityTpl let-row="row" let-value="value" let-i="index">
+    <s-badge [text]=value [badgeCls]="'s-badge-'+value"></s-badge>
+  </template>
+  <template #StateTpl let-row="row" let-value="value" let-i="index">
+    <s-badge [text]=value [badgeCls]="'s-badge-'+value"></s-badge>
+  </template>
+  <template #conditionTpl let-row="row" let-value="value" let-i="index" >
+    <table>
+        <tr *ngFor="let v of value">
+           <td><strong>{{v.condition}}</strong></td> <td>: {{v.fieldName}} {{v.operator}} {{v.value1}} </td>
+        </tr>
+    </table>
+  </template>
 </div>

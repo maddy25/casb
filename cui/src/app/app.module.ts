@@ -16,8 +16,9 @@ import { ChartsModule }       from './vendor_modules/chartjs/chart.module';
 // Compinents and Pages
 import { AppComponent }       from './app.component';
 import { PillComponent }      from './components/pill/pill.component';
+import { BadgeComponent }     from './components/badge/badge.component';
+
 import { HnavComponent }      from './components/hnav/hnav.component';
-import { SidebarComponent }   from './components/sidebar/sidebar.component';
 import { LogoComponent }      from './components/logo/logo.component';
 import { AppFooterComponent } from './components/app-footer/app-footer.component';
 
@@ -35,9 +36,12 @@ import { SignupComponent }    from './components/pages/signup/signup.component';
 
 
 // Services
-import { LoginService } from './api/login.service';
+import { AuthGuard       } from './routing_guards/auth.guard';
+import { TranslateService} from './api/translate.service';
+import { LoginService    } from './api/login.service';
 import { IncidentService } from './api/incident.service';
-import { AuthGuard } from './routing_guards/auth.guard';
+import { PolicyService   } from './api/policy.service';
+
 
 //Material2 depends on this module
 import 'hammerjs';
@@ -65,8 +69,8 @@ import 'hammerjs';
   declarations: [
     AppComponent,
     PillComponent,
+    BadgeComponent,
     HnavComponent,
-    SidebarComponent,
     AlertsComponent,
     HomeComponent,
     LogoComponent,
@@ -83,8 +87,10 @@ import 'hammerjs';
 
   providers:[
     AuthGuard,
+    TranslateService,
     LoginService,
     IncidentService,
+    PolicyService,
     {provide: 'api', useValue: 'http://' + window.location.hostname + ':9119/' }
   ],
 

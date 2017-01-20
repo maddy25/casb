@@ -1,5 +1,5 @@
-<div class="s-home-pg">
-  <md-toolbar id="s-main-toolbar" class="s-shadow-1">
+<md-sidenav-container class="s-home-pg">
+  <md-toolbar id="s-main-toolbar" >
     <s-logo class="s-home-pg-logo"></s-logo>
     <!-- img class="s-home-pg-logo" src="/assets/images/swlogo.png" alt="Sonicwall Logo" / -->
     <s-hnav #appNav style="height:100%;" [navItems]="toolbarNavItems" [selected]="selectedNavItem"  (selectionChange)="navbarSelectionChange($event);" ></s-hnav>
@@ -9,13 +9,15 @@
     <s-pill [size]="'medium'" [text]="Test"   [iconAlign]="'left'" [color]="'#63666A'" [hideText]="true"  [spread]="false" [rounded]="'true'" [iconCls]="'fa fa-question fa-lg'"></s-pill>
     <s-pill [size]="'medium'" [text]="Test"   [iconAlign]="'left'" [color]="'#63666A'" [hideText]="true"  [spread]="false" [rounded]="'true'" [iconCls]="'fa fa-bell fa-lg'" (click)="onAlertClick($event)"  md-tooltip="Alerts" tooltip-position="below" ></s-pill>
     <s-pill [size]="'medium'" [text]="Test"   [iconAlign]="'left'" [color]="'#63666A'" [hideText]="true"  [spread]="false" [rounded]="'true'" [iconCls]="'fa fa-power-off fa-lg'" (click)="onLogout($event)" md-tooltip="Logout" tooltip-position="below"> </s-pill>
-    <s-pill [size]="'medium'" [text]="'Mrin'" [iconAlign]="'right'" [color]="'#63666A'" [hideText]="false" [spread]="false" [rounded]="'true'" [iconCls]="'fa fa-user fa-lg'"></s-pill>
+    <s-pill [size]="'medium'" [text]="userName" [iconAlign]="'right'" [color]="'#63666A'" [hideText]="false" [spread]="false" [rounded]="'true'" [iconCls]="'fa fa-user fa-lg'"></s-pill>
   </md-toolbar>
   <router-outlet></router-outlet>
 
-</div>
 
-<!-- Side Bars -->
-<ng2-sidebar [(open)]="openRightDraw" [closeOnClickOutside]="true" [position]="'right'" [showOverlay]="true" >
-    <s-alerts [width]="300" [showHeader]="true" [showFooter]="false"></s-alerts>
-</ng2-sidebar>
+  <md-sidenav #alertSideNav align="end">
+    <md-toolbar [color]="primary" >
+      <span>Application Alerts</span>
+    </md-toolbar>
+    <button md-button (click)="alertSideNav.close()">Close</button>
+  </md-sidenav>
+</md-sidenav-container>

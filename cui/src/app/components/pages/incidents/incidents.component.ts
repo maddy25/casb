@@ -16,18 +16,17 @@ export class IncidentsComponent implements OnInit {
   //ngx-Datatable Variables
   columns:any[];
   rows:any[];
-  expanded = {};
-  timeout: any;
 
   //ngx-Chart Variables
-  single: any[] = [];
+  incidentBySeverityChartData: any[] = [];
   view: any[] = [700, 150];
   colorScheme = { domain: ['#CE1126', '#FFCC00','#AAAAAA','#005d84']};
 
   constructor( private router: Router, private incidentService: IncidentService) { }
 
 	ngOnInit() {
-    this.getIncidentData();
+    var me = this;
+    window.setTimeout(function(){me.getIncidentData();}, 300);
     this.columns=[
       {prop:"incidentId"  , name: "ID"         , width:50 },
       {prop:"detectedOn"  , name: "Detected On", width:170},
@@ -58,101 +57,15 @@ export class IncidentsComponent implements OnInit {
   ];
 */
 
-
-  onSelect(event) {
-    console.log(event);
-  }
-
-/*
-  page(offset, limit) {
-    this.fetch((results) => {
-      this.count = results.length;
-
-      const start = offset * limit;
-      const end = start + limit;
-      let rows = [...this.rows];
-
-      for (let i = start; i < end; i++) {
-        rows[i] = results[i];
-      }
-
-      this.rows = rows;
-      console.log('Page Results', start, end, rows);
-    });
-  }
-*/
-  /*
-  page(offset, limit) {
-      this.incidentService.getIncidents(0,10).subscribe(
-          successResponse => {
-            this.rows = successResponse["items"];
-            console.log(successResponse["items"]);
-          }
-      );
-
-  }
-
-  onPage(event) {
-    clearTimeout(this.timeout);
-    this.timeout = setTimeout(() => {
-      //console.log('paged!', event);
-    }, 100);
-  }
-  */
   getIncidentData() {
       var dateFormat = {year: 'numeric', month: 'short', day: 'numeric' ,hour:"2-digit",minute:"numeric"};
-      this.incidentService.getIncidents(0,10000).subscribe(
-        resp => {
-          this.rows = resp["items"].map(function(v, i, a){
-            var newRow = Object.assign({}, v);
-            newRow.detectedOn  = new Date(newRow.detectedOn).toLocaleDateString("en-US",dateFormat);
+      this.incidentService.getIncidents(0,10000).subscribe((data) => {
+        this.rows = data;
+      });
 
-            switch (newRow.status) {
-              case "IN_PROGRESS":
-                newRow.status = "Progress"
-                break;
-              case "NEW":
-                newRow.status = "New"
-                break;
-              case "DISMISSED":
-                newRow.status = "Dismissed"
-                break;
-              case "RESOLVED":
-                newRow.status = "Resolved"
-                break;
-            }
-
-            switch (newRow.severity) {
-              case "CRITICAL":
-                newRow.severity = "critical"
-                break;
-              case "ALERT":
-                newRow.severity = "alert"
-                break;
-              case "WARNING":
-                newRow.severity = "warning"
-                break;
-              case "INFO":
-                newRow.severity = "info"
-                break;
-            }
-
-            return newRow;
-          });
-          //console.log(successResponse["items"]);
-        }
-      );
-
-      this.incidentService.getIncidentsBySeverity().subscribe(
-        resp => {
-          this.single = [
-            {"name":"critical", "value":resp["content"]["critical"]},
-            {"name":"alert"   , "value":resp["content"]["alert"]   },
-            {"name":"warning" , "value":resp["content"]["warning"] },
-            {"name":"info"    , "value":resp["content"]["info"]    }
-          ]
-        }
-      );
+      this.incidentService.getIncidentsBySeverity().subscribe((data) => {
+          this.incidentBySeverityChartData = data;
+      });
   }
 
 

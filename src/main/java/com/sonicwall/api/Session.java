@@ -7,7 +7,7 @@ import com.sonicwall.model.*;
 import com.sonicwall.model.security.*;
 import org.springframework.http.MediaType;
 
-import com.sonicwall.repo.UserRepository;
+import com.sonicwall.repo.*;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import java.util.Optional;
@@ -28,14 +28,14 @@ This is a dummy rest controller, for the purpose of documentation (/session) pat
 public class Session {
 
   @Autowired
-  private UserRepository userRepo;
+  private UserViewRepo userViewRepo;
 
   @ApiResponses(value = { @ApiResponse(code = 200, message = "Will return a security token, which must be passed in every request", response = SessionResponse.class) })
   @RequestMapping(value = "/session", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
   @ResponseBody
   public SessionResponse newSession(@RequestBody LoginModel loginDetails, HttpServletRequest request, HttpServletResponse response) {
       System.out.format("\n /Session Called username=%s\n", loginDetails.getUsername());
-      User user = userRepo.findOneByUserIdAndPassword(loginDetails.getUsername(), loginDetails.getPassword()).orElse(null);
+      UserView user = userViewRepo.findOneByUserIdAndPassword(loginDetails.getUsername(), loginDetails.getPassword()).orElse(null);
       SessionResponse r = new SessionResponse();
       if (user != null){
         System.out.format("\n /User Details=%s\n", user.getFirstName());
@@ -43,9 +43,12 @@ public class Session {
         r.setFirstName(user.getFirstName());
         r.setLastName(user.getLastName());
         r.setEmail(user.getEmail());
-        //r.setRole("ADMIN");
-        r.setDefaultCustomerId(user.getDefaultCustomerId());
+        r.setRole(user.getRole());
+        r.setCustomerId(user.getCustomerId());
         r.setServiceProviderId(user.getSecurityProviderId());
+        r.setCustomer(user.getCustomer());
+        r.setServiceProvider(user.getSecurityProvider());
+
       }
       else{
           r.setToken("INVALID");

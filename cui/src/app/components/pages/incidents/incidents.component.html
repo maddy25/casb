@@ -1,11 +1,11 @@
 <div class="s-incidents-pg">
-
+  {{single}}
   <ngx-charts-advanced-pie-chart
       style="position:relative"
       [view]="view"
       [scheme]="colorScheme"
-      [results]="single"
-      (select)="onSelect($event)">
+      [results]="incidentBySeverityChartData"
+  >
   </ngx-charts-advanced-pie-chart>
 <!--
 
@@ -48,16 +48,10 @@
   </ngx-datatable>
 
   <template #severityCellTpl let-row="row" let-value="value" let-i="index">
-      <span *ngIf="value == 'critical'" class="s-table-badge s-badge-critical">{{value}}</span>
-      <span *ngIf="value == 'alert'"    class="s-table-badge s-badge-alert">{{value}}</span>
-      <span *ngIf="value == 'warning'"  class="s-table-badge s-badge-warning">{{value}}</span>
-      <span *ngIf="value == 'info'"     class="s-table-badge s-badge-info">{{value}}</span>
+    <s-badge [text]=value [badgeCls]="'s-badge-'+value"></s-badge>
   </template>
   <template #statusCellTpl let-row="row" let-value="value" let-i="index">
-      <span *ngIf="value == 'New'"       class="s-table-badge s-badge-new">{{value}}</span>
-      <span *ngIf="value == 'Progress'"  class="s-table-badge s-badge-progress">{{value}}</span>
-      <span *ngIf="value == 'Dismissed'" class="s-table-badge s-badge-dismissed">{{value}}</span>
-      <span *ngIf="value == 'Resolved'"  class="s-table-badge s-badge-resolved">{{value}}</span>
+    <s-badge [text]=value [badgeCls]="'s-badge-'+value"></s-badge>
   </template>
 
 

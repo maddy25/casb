@@ -10,6 +10,8 @@ public class SessionResponse {
   private String LastName;
   private String email;
   private String role;
-  private int defaultCustomerId;
+  private String customer;
+  private String serviceProvider;
+  private int customerId;
   private int serviceProviderId;
 }

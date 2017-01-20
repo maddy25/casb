@@ -290,59 +290,62 @@ ALTER TABLE rule_action             ADD CONSTRAINT fk_rule_action_action_id     
 /* Views */
 CREATE OR REPLACE VIEW incident_detail AS
 SELECT DISTINCT
-i.id as incident_id,
+i.id AS incident_id,
 i.policy_id,
 i.detected_on,
 i.event_id,
 i.owner_email,
 i.owner_name,
 i.platform_user,
-i.status   as status,
-pt.name    as policy_type,
+i.status   AS status,
+pt.name    AS policy_type,
 p.severity ,
-c.name     as customer_name,
+c.name     AS customer_name,
 c.security_provider_id,
-c.id       as customer_id,
-sp.name    as security_provider_name,
-splat.name as platform_name
-from incident i, policy p, policy_type pt, customer c , security_provider sp , rule r, managed_service ms,supported_service ss, supported_platform splat
-where i.policy_id              = p.id
-  and p.customer_id            = c.id
-  and c.security_provider_id   = sp.id
-  and p.policy_type_id         = pt.id
-  and r.policy_id              = p.id
-  and r.managed_service_id     = ms.id
-  and ms.supported_service_id  = ss.id
-  and ss.supported_platform_id = splat.id;
+c.id       AS customer_id,
+sp.name    AS security_provider_name,
+splat.name AS platform_name
+ FROM incident i, policy p, policy_type pt, customer c , security_provider sp , rule r, managed_service ms,supported_service ss, supported_platform splat
+WHERE i.policy_id              = p.id
+  AND p.customer_id            = c.id
+  AND c.security_provider_id   = sp.id
+  AND p.policy_type_id         = pt.id
+  AND r.policy_id              = p.id
+  AND r.managed_service_id     = ms.id
+  AND ms.supported_service_id  = ss.id
+  AND ss.supported_platform_id = splat.id;
 
 CREATE OR REPLACE VIEW policy_detail AS
 SELECT
-p.id       as policy_id,
-p.name     as policy_name,
-pt.name    as policy_type,
-p.state    as policy_state,
-p.severity as severity,
-r.id       as rule_id,
-r.name     as rule_name,
-c.id       as customer_id,
-c.name     as customer_name,
+p.id       AS policy_id,
+p.name     AS policy_name,
+pt.name    AS policy_type,
+p.state    AS policy_state,
+p.severity AS severity,
+r.id       AS rule_id,
+r.name     AS rule_name,
+c.id       AS customer_id,
+c.name     AS customer_name,
 c.security_provider_id,
-rc.description as rule_condition,
-f.name     as field_name,
-o.name     as operator,
-rc.value1  as value1,
-rc.value2  as value2
-from rule r, policy p, policy_type pt, field f, operator o, rule_condition rc, customer c , security_provider sp
-where r.policy_id      = p.id
-  and p.policy_type_id = pt.id
-  and p.customer_id    = c.id
-  and c.security_provider_id   = sp.id
-  and r.id             = rc.rule_id
-  and rc.field_id      = f.id
-  and rc.operator_id   = o.id;
+rc.description AS rule_condition,
+f.name     AS field_name,
+o.name     AS operator,
+rc.value1  AS value1,
+rc.value2  AS value2
+ FROM rule r, policy p, policy_type pt, field f, operator o, rule_condition rc, customer c , security_provider sp
+WHERE r.policy_id      = p.id
+  AND p.policy_type_id = pt.id
+  AND p.customer_id    = c.id
+  AND c.security_provider_id   = sp.id
+  AND r.id             = rc.rule_id
+  AND rc.field_id      = f.id
+  AND rc.operator_id   = o.id;
 
-
-
+CREATE OR REPLACE VIEW user_view AS
+SELECT user_id, password, first_name, last_name, email, role, is_active, is_blocked,  u.security_provider_id ,u.default_customer_id AS customer_id, sp.name AS security_provider, c.name AS customer
+  FROM user u, customer c, security_provider sp
+ WHERE u.default_customer_id = c.id
+   AND u.security_provider_id = sp.id;
 
 /* Actions for each Rule
 

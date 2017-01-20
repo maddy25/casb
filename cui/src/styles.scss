@@ -159,7 +159,7 @@ ngx-charts-advanced-pie-chart .item-value{
 
 
 // Custom Classes
-.s-table-badge{
+.s-badge{
   font-size:11px;
   font-weight:normal;
   border-radius: 2px;
@@ -181,20 +181,20 @@ ngx-charts-advanced-pie-chart .item-value{
       font-size:13px;
       //color:$s-c-text;
   }
-  &.s-badge-new{
+  &.s-badge-New{
       color:$s-c-info;
       border: 1px solid $s-c-info;
       margin-left:5px;
   }
-  &.s-badge-resolved{
+  &.s-badge-Resolved{
       font-size:13px;
       //color:$s-c-positive;
   }
-  &.s-badge-dismissed{
+  &.s-badge-Dismissed{
       font-size:13px;
       //color:$s-c-gray-logo;
   }
-  &.s-badge-progress{
+  &.s-badge-Progress{
       font-size:13px;
       //color:$s-c-text;
   }
