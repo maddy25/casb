@@ -46,11 +46,10 @@ public class AppSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests()
 		    // Allow anonymous resource requests
 		    .antMatchers("/", "/resources/**", "/static/**", "/public/**"
-          , "/configuration/**", "/swagger-ui/**",  "/swagger-ui-dark/**", "/swagger-ui-new/**", "/swagger-resources/**","/api-docs/**", "/v2/api-docs/**"
-          , "/webjars/springfox-swagger-ui/**"
+          , "/configuration/**", "/swagger-ui/**", "/swagger-resources/**","/api-docs/**", "/v2/api-docs/**"
           , "/login" , "/session"
           , "/home"
-          , "/console/*"
+          , "/h2-console/*"
           , "/webui/**"
           , "/**/*.html" ,"/**/*.css","/**/*.js","/**/*.png","/**/*.ttf","/**/*.woff").permitAll()
         // All other request need to be authenticated

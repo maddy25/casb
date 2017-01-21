@@ -30,12 +30,27 @@ public class IncidentController {
   @ApiOperation(value = "List of incidents", response = IncidentDetailResponse.class)
   @RequestMapping(value = "/incidents", method = RequestMethod.GET)
   public IncidentDetailResponse getIncidentsByPage(
-    @ApiParam(value = ""    ) @RequestParam(value = "page"  ,  defaultValue="0"   ,  required = false) Integer page,
-    @ApiParam(value = "between 1 to 100 allowed" ) @RequestParam(value = "size"  ,  defaultValue="20" ,  required = false) Integer size,
+    @ApiParam(value = ""    )               @RequestParam(value = "page"  ,  defaultValue="0"   ,  required = false) Integer page,
+    @ApiParam(value = "between 1 to 1000" ) @RequestParam(value = "size"  ,  defaultValue="20"  ,  required = false) Integer size,
+    @RequestParam(value = "incidentid"  , required = false) Integer incidentId,
+    @RequestParam(value = "policyid"    , required = false) Integer policyId,
+    @RequestParam(value = "platformName", required = false) String platformName,
+    @RequestParam(value = "customer"    , required = false) String customer,
+    @RequestParam(value = "status"      , required = false) String status,
+    @RequestParam(value = "severity"    , required = false) String severity,
     Pageable pageable
   ) {
       IncidentDetailResponse resp = new IncidentDetailResponse();
-      Page<IncidentDetailModel> incidentPage = incidentService.findAll(pageable);
+      IncidentDetailModel qry = new IncidentDetailModel();
+      if (incidentId != null)  { qry.setIncidentId(incidentId); }
+      if (policyId != null)    { qry.setPolicyId(policyId);     }
+      if (customer != null)    { qry.setCustomerName(customer); }
+      if (severity != null)    { qry.setSeverity(severity);     }
+      if (status != null)      { qry.setStatus(status);         }
+      if (platformName != null){ qry.setPlatformName(platformName); }
+
+      //Page<IncidentDetailModel> incidentPage = incidentService.findAll(pageable);
+      Page<IncidentDetailModel> incidentPage = incidentService.findAll(org.springframework.data.domain.Example.of(qry), pageable);
       resp.setPageStats(incidentPage, true);
       resp.setItems(incidentPage.getContent());
       return resp;
@@ -78,7 +93,7 @@ public class IncidentController {
   @ApiOperation(value = "Incident by status", response = IncidentByStatusResponse.class)
   @RequestMapping(value = "/incidents-by-status", method = RequestMethod.GET)
   public IncidentByStatusResponse getIncidentsByStatus() {
-    String sql = "select count(*) as count, status from incident_detail group by status";
+    String sql = "select count(*) as count, status as status from demo.incident_detail group by status";
     String countType = new String();
     long count;
     IncidentByStatusResponse resp = new IncidentByStatusResponse();
@@ -121,7 +136,6 @@ public class IncidentController {
     IncidentByStatusModel info     = new IncidentByStatusModel();
     IncidentByStatusModel warning  = new IncidentByStatusModel();
     IncidentByStatusModel critical = new IncidentByStatusModel();
-
 
     List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
     for (Map<String, Object> row : list) {

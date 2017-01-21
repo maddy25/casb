@@ -49,7 +49,7 @@
 				<artifactId>download-maven-plugin</artifactId>
 				<version>1.3.0</version>
 				<executions>
-				<!-- TO Download redoc (enable it when building for production)
+				<!-- TO Download redoc (enable it when building for production) -->
         	<execution>
 					<phase>process-resources</phase>
 					<goals>
@@ -61,7 +61,7 @@
 						<targetDirectory>${project.build.directory}</targetDirectory>
 					</configuration>
 					</execution>
-         -->
+
 				</executions>
 			</plugin>
 			<plugin>

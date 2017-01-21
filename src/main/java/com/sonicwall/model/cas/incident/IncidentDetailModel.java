@@ -14,22 +14,22 @@ public class IncidentDetailModel  {
 
 
   @Id
-  private int    incidentId;
-  private int    policyId;
-  private Date   detectedOn;
-  private int    eventId;
-  private String ownerEmail;
-  private String ownerName;
-  private String platformUser;
-  private String policyType;
+  private Integer incidentId;
+  private Integer policyId;
+  private Date    detectedOn;
+  private Integer eventId;
+  private String  ownerEmail;
+  private String  ownerName;
+  private String  platformUser;
+  private String  policyType;
   @ApiModelProperty(allowableValues = "NEW, IN_PROGRESS, DISMISSED, RESOLVED")
   private String status;
   //private IncidentStatusEnum status = null;
 
   @ApiModelProperty(allowableValues = "ALERT, INFO, WARNING, CRITICAL")
-  private String severity;
-  private String customerName;
-  private int    securityProviderId;
-  private String securityProviderName;
-  private String platformName;
+  private String  severity;
+  private String  customerName;
+  private Integer securityProviderId;
+  private String  securityProviderName;
+  private String  platformName;
 }
