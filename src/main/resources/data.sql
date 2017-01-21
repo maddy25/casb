@@ -7,7 +7,7 @@ truncate table supported_platform,
 truncate table supported_service,
 truncate table service_category,
 */
-USE demo;
+/* USE demo; */
 /* supported platform */
 INSERT INTO supported_platform (id, name) VALUES (100 , 'Google Suite');
 INSERT INTO supported_platform (id, name) VALUES (101 , 'Dropbox');

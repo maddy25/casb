@@ -32,9 +32,10 @@ Conventions
 CREATE DATABASE `cas`;
 USE `cas`;
 */
+/*
 CREATE SCHEMA `demo`;
 USE `demo`;
-
+*/
 
 
 /*******************************************************************************

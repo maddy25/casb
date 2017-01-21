@@ -44,7 +44,7 @@ public class PolicyController {
 
     PolicyDetailResponse resp = new PolicyDetailResponse();
     resp.setItems(new ArrayList<PolicyDetailModel>());
-    String sql = "SELECT policy_id, policy_name, policy_type, policy_state, severity, rule_id, rule_name, customer_name, rule_condition, field_name, operator, value1, value2 from demo.policy_detail order by policy_id, rule_id";
+    String sql = "SELECT policy_id, policy_name, policy_type, policy_state, severity, rule_id, rule_name, customer_name, rule_condition, field_name, operator, value1, value2 from policy_detail order by policy_id, rule_id";
     List<Map<String, Object>> list = jdbcTemplate.queryForList(sql);
 
     for (Map<String, Object> row : list) {

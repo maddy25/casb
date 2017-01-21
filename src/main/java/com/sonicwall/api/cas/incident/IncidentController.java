@@ -93,7 +93,7 @@ public class IncidentController {
   @ApiOperation(value = "Incident by status", response = IncidentByStatusResponse.class)
   @RequestMapping(value = "/incidents-by-status", method = RequestMethod.GET)
   public IncidentByStatusResponse getIncidentsByStatus() {
-    String sql = "select count(*) as count, status as status from demo.incident_detail group by status";
+    String sql = "select count(*) as count, status as status from incident_detail group by status";
     String countType = new String();
     long count;
     IncidentByStatusResponse resp = new IncidentByStatusResponse();
